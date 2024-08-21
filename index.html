@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Intro component with sign up form</title>
+  </head>
+  <body>
+    <div class="main">
+      <section class="left">
+        <h1 class="title">Learn to code by watching others</h1>
+        <p class="description">
+          See how experienced developers solve problems in real-time. Watching
+          scripted tutorials is great, but understanding how developers think is
+          invaluable.
+        </p>
+      </section>
+      <section class="right">
+        <div class="smallbox">Try it free 7 days then $20/mo. thereafter</div>
+        <div class="bigbox">
+          <div class="input-container">
+            <input
+              class="ifnbox"
+              type="text"
+              placeholder="First Name"
+              aria-describedby="fnerr"
+            />
+            <img class="ifnerror" src="./images/icon-error.svg" alt="error" />
+            <span id="fnerr" class="fnerr">First Name cannot be empty</span>
+          </div>
+          <div class="input-container">
+            <input
+              class="ilnbox"
+              type="text"
+              placeholder="Last Name"
+              aria-describedby="lnerr"
+            />
+            <img class="ilnerror" src="./images/icon-error.svg" alt="error" />
+            <span id="lnerr" class="lnerr">Last Name cannot be empty</span>
+          </div>
+          <div class="input-container">
+            <input
+              class="imailbox"
+              type="text"
+              placeholder="Email Address"
+              aria-describedby="mailerr"
+            />
+            <img class="imailerror" src="./images/icon-error.svg" alt="error" />
+            <span id="mailerr" class="mailerr"
+              >Looks like this is not an email</span
+            >
+          </div>
+          <div class="input-container">
+            <input
+              class="ipassbox"
+              type="password"
+              placeholder="Password"
+              aria-describedby="passerr"
+            />
+            <img class="ipasserror" src="./images/icon-error.svg" alt="error" />
+            <span id="passerr" class="passerr">Password cannot be empty</span>
+          </div>
+          <button class="btn">CLAIM YOUR FREE TRIAL</button>
+          <p class="terms">
+            By clicking the button, you are agreeing to our
+            <a class="link" href="#">Terms and Services</a>
+          </p>
+        </div>
+      </section>
+    </div>
+    <script>
+      const fnbox = document.querySelector(".ifnbox");
+      const lnbox = document.querySelector(".ilnbox");
+      const mailbox = document.querySelector(".imailbox");
+      const passbox = document.querySelector(".ipassbox");
+      const btn = document.querySelector(".btn");
+      const ifnerror = document.querySelector(".ifnerror");
+      const ilnerror = document.querySelector(".ilnerror");
+      const imailerror = document.querySelector(".imailerror");
+      const ipasserror = document.querySelector(".ipasserror");
+      const fnerr = document.querySelector(".fnerr");
+      const lnerr = document.querySelector(".lnerr");
+      const mailerr = document.querySelector(".mailerr");
+      const passerr = document.querySelector(".passerr");
+      ifnerror.style.display = "none";
+      ilnerror.style.display = "none";
+      imailerror.style.display = "none";
+      ipasserror.style.display = "none";
+      fnerr.style.display = "none";
+      lnerr.style.display = "none";
+      mailerr.style.display = "none";
+      passerr.style.display = "none";
+
+      const handleInput = (inputBox, errorIcon, errorMsg) => {
+        inputBox.addEventListener("input", () => {
+          if (inputBox.value.trim() !== "") {
+            errorIcon.style.display = "none";
+            errorMsg.style.display = "none";
+          } else {
+            errorIcon.style.display = "block";
+            errorMsg.style.display = "block";
+          }
+        });
+      };
+
+      handleInput(fnbox, ifnerror, fnerr);
+      handleInput(lnbox, ilnerror, lnerr);
+      handleInput(mailbox, imailerror, mailerr);
+      handleInput(passbox, ipasserror, passerr);
+
+      document.querySelector(".btn").addEventListener("click", (e) => {
+        e.preventDefault();
+        ifnerror.style.display = "none";
+        ilnerror.style.display = "none";
+        imailerror.style.display = "none";
+        ipasserror.style.display = "none";
+        fnerr.style.display = "none";
+        lnerr.style.display = "none";
+        mailerr.style.display = "none";
+        passerr.style.display = "none";
+
+        let isValid = true;
+
+        if (fnbox.value === "") {
+          ifnerror.style.display = "block";
+          fnerr.style.display = "block";
+          isValid = false;
+        }
+
+        if (lnbox.value === "") {
+          ilnerror.style.display = "block";
+          lnerr.style.display = "block";
+          isValid = false;
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(mailbox.value)) {
+          imailerror.style.display = "block";
+          mailerr.style.display = "block";
+          isValid = false;
+        }
+
+        if (passbox.value === "") {
+          ipasserror.style.display = "block";
+          passerr.style.display = "block";
+          isValid = false;
+        }
+
+        if (isValid) {
+          alert(
+            "Thank you for your registration. We will reach out to you shortly."
+          );
+          fnbox.value = "";
+          lnbox.value = "";
+          mailbox.value = "";
+          passbox.value = "";
+        }
+      });
+    </script>
+  </body>
+</html>
